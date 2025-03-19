@@ -50,4 +50,17 @@ public abstract class Vehicle implements Serializable
                 ", ID=" + ID +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Vehicle vehicle = (Vehicle) obj;
+        return ID == vehicle.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(ID);
+    }
 }
