@@ -101,11 +101,27 @@ public class VehicleRepository implements IVehicleRepository
     @Override
     public ArrayList<Vehicle> getVehicles() // deep copy
     {
-        ArrayList<Vehicle> dcVehicles = new ArrayList<>();
+        try
+        {
+            // serialization
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(vehicles);
+            oos.flush();
+            oos.close();
 
-
-
-        return vehicles;
+            // deserialization & deep copying
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            ArrayList<Vehicle> deepCopy = (ArrayList<Vehicle>) ois.readObject();
+            ois.close();
+            return deepCopy;
+        }
+        catch (IOException | ClassNotFoundException ex)
+        {
+            ex.printStackTrace();
+            throw new RuntimeException("Error during executing deep copy.", ex);
+        }
     }
 
 
