@@ -1,0 +1,6 @@
+org\example\model\Car.class
+org\example\model\Motorcycle.class
+org\example\model\Vehicle.class
+org\example\repositories\IVehicleRepository.class
+org\example\app\Main.class
+org\example\repositories\VehicleRepository.class

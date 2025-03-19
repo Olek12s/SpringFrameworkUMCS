@@ -1,0 +1,11 @@
+brand; model; year; price; isRented; ID; category
+Volvo; V50; 2000; 2000; true; 0
+Volvo; V50; 2006; 4000; false; 1
+Volvo; V70; 2010; 6000; false; 2
+Volvo; V90; 2010; 8000; false; 3
+Toyota; T0; 2001; 2100; false; 4
+Toyota; T1; 2002; 2200; false; 5
+Toyota; T2; 2003; 2300; false; 6
+BMW; e38; 1998; 6000; false; 7
+Yamaha; PCJ; 2022; 12000; true; 8
+Yamaha; PCJ; 2022; 12000; true; 9
