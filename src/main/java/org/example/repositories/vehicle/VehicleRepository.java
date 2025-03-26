@@ -81,6 +81,10 @@ public class VehicleRepository implements IVehicleRepository
         saveRepositoryToCSV();
     }
 
+    public ArrayList<Vehicle> getVehiclesShallow()  // shallow copy
+    {
+        return vehicles;
+    }
 
     @Override
     public ArrayList<Vehicle> getVehicles() // deep copy
