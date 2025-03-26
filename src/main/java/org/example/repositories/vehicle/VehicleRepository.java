@@ -1,4 +1,4 @@
-package org.example.repositories;
+package org.example.repositories.vehicle;
 
 import org.example.model.Car;
 import org.example.model.Motorcycle;
@@ -13,7 +13,7 @@ public class VehicleRepository implements IVehicleRepository
     public static int NEXT_ID;
 
     /*
-    public org.example.repositories.VehicleRepository(ArrayList<org.example.model.Vehicle> vehicles)
+    public org.example.repositories.vehicle.VehicleRepository(ArrayList<org.example.model.Vehicle> vehicles)
     {
         for (org.example.model.Vehicle vehicle : vehicles)
         {
@@ -65,12 +65,6 @@ public class VehicleRepository implements IVehicleRepository
         }
     }
 
-    //private void addVehicle(Vehicle vehicle)
-    //{
-    //    vehicles.add(vehicle);
-    //}
-
-
     @Override
     public void rentVehicle(String brand, String model, int year, int price, String category)
     {
@@ -87,7 +81,7 @@ public class VehicleRepository implements IVehicleRepository
     }
 
     @Override
-    public void returnVehicle(int ID)
+    public void getVehicle(int ID)
     {
         vehicles.stream()
                 .filter(a -> a.getID() == ID)
@@ -131,7 +125,7 @@ public class VehicleRepository implements IVehicleRepository
     {
         try
         {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("Repozytorium.csv"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("RepozytoriumPojazdow.csv"));
 
             for (Vehicle vehicle : vehicles)
             {
@@ -144,4 +138,17 @@ public class VehicleRepository implements IVehicleRepository
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addVehicle(Vehicle vehicle)
+    {
+        vehicles.add(vehicle);
+    }
+
+    @Override
+    public void removeVehicle(int ID)
+    {
+        vehicles.removeIf(vehicle -> vehicle.getID() == ID);
+    }
+
 }
