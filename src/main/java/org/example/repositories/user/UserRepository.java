@@ -4,9 +4,7 @@ import org.example.app.Authentication;
 import org.example.model.Vehicle;
 import org.example.repositories.vehicle.VehicleRepository;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class UserRepository implements IUserRepository
@@ -30,7 +28,7 @@ public class UserRepository implements IUserRepository
                 String role = parts[2];
                 int rentedVehicleID = Integer.parseInt(parts[3]);
 
-                User user = new User(login, passwordHash, role, rentedVehicleID);
+                User user = new User(login, passwordHash, role, rentedVehicleID, true);
                 users.add(user);
             }
         }
@@ -56,9 +54,27 @@ public class UserRepository implements IUserRepository
     }
 
     @Override
-    public void save(User user)
+    public void save(User user, String path)
     {
+        if (getUser(user.getLogin()) != null)
+        {
+            System.err.println("Użytkownik o loginie " + user.getLogin() + " już istnieje w systemie.");
+            return;
+        }
         users.add(user);
+
+        try
+        {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter out = new PrintWriter(bufferedWriter);
+            out.println(user.toCSV());
+            out.flush();
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException("Błąd podczas zapisu do pliku: " + path, ex);
+        }
     }
 
     public void printAllUsers(User user)

@@ -1,6 +1,7 @@
 package org.example.app;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.example.model.Car;
 import org.example.model.Vehicle;
 import org.example.repositories.user.User;
 import org.example.repositories.user.UserRepository;
@@ -17,6 +18,8 @@ public class Main
         String vehiclePath = "RepozytoriumPojazdow.csv";
         String userPath = "RepozytoriumUzytkownikow.csv";
         VehicleRepository vehicleRepository = new VehicleRepository(vehiclePath);
+        Vehicle car = new Car("brand-0", "model-x", 2025, 9999);
+        vehicleRepository.addVehicle(car);
 
         ArrayList<Vehicle> vehicles = vehicleRepository.getVehicles();
 
@@ -25,27 +28,18 @@ public class Main
             System.out.println(v.toString());
         }
 
-        ArrayList<String> a = new ArrayList<>();
-        a.add("a");
-        a.add("b");
-        a.add("a");
-        for (String s : a)
-        {
-            String sha256hex = DigestUtils.sha256Hex(s);
-            System.out.println(sha256hex);
-        }
-
         UserRepository userRepository = new UserRepository(userPath);
         Authentication auth = new Authentication(userRepository);
-        //User user = new User("abc", "def");
-        User admin = new User("Admin000", "def");
-        //userRepository.save(user);
-        userRepository.save(admin);
-        //userRepository.removeVehicle(user, vehicleRepository, 1);
+        User user = new User("abc", "def", "user", -1, true);
+        User admin = new User("Admin000", "admin", "admin", -1, false);
+        userRepository.save(user, userPath);
+        userRepository.save(admin, userPath);
+        userRepository.removeVehicle(user, vehicleRepository, 1);
+        userRepository.removeVehicle(admin, vehicleRepository, 12);
         //userRepository.printUserDetails(admin);
         //userRepository.printUserDetails(user);
-        userRepository.printAllUsers(admin);
-        //userRepository.printAllUsers(user);
+        //userRepository.printAllUsers(admin);
+        userRepository.printAllUsers(user);
         auth.login();
     }
 }

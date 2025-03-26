@@ -1,4 +1,4 @@
-brand; model; year; price; isRented; ID; category
+brand; model; year; price; isRented; ID; [category]
 Volvo; V50; 2000; 2000; true; 0
 Volvo; V50; 2006; 4000; false; 1
 Volvo; V70; 2010; 6000; false; 2
@@ -9,3 +9,12 @@ Toyota; T2; 2003; 2300; false; 6
 BMW; e38; 1998; 6000; false; 7
 Yamaha; PCJ; 2022; 12000; true; 8
 Yamaha; PCJ; 2022; 12000; true; 9
+brand-0; model-x; 2025; 9999; false; 10
+brand-0; model-x; 2025; 9999; false; 11
+brand-0; model-x; 2025; 9999; false; 13
+brand-0; model-x; 2025; 9999; false; 14
+brand-0; model-x; 2025; 9999; false; 15
+brand-0; model-x; 2025; 9999; false; 16
+brand-0; model-x; 2025; 9999; false; 17
+brand-0; model-x; 2025; 9999; false; 18
+brand-0; model-x; 2025; 9999; false; 19

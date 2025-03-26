@@ -11,21 +11,11 @@ public class VehicleRepository implements IVehicleRepository
 {
     private final ArrayList<Vehicle> vehicles = new ArrayList<>();
     public static int NEXT_ID;
-
-    /*
-    public org.example.repositories.vehicle.VehicleRepository(ArrayList<org.example.model.Vehicle> vehicles)
-    {
-        for (org.example.model.Vehicle vehicle : vehicles)
-        {
-            vehicle.setID(NEXT_ID);
-            addVehicle(vehicle);
-            NEXT_ID++;
-        }
-    }
-    */
+    private String path;
 
     public VehicleRepository(String filePath)
     {
+        this.path = filePath;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath)))
         {
             String line;
@@ -118,37 +108,38 @@ public class VehicleRepository implements IVehicleRepository
         }
     }
 
-
-
     @Override
     public void saveRepositoryToCSV()
     {
         try
         {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("RepozytoriumPojazdow.csv"));
-
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write("brand; model; year; price; isRented; ID; [category]");
+            writer.newLine();
             for (Vehicle vehicle : vehicles)
             {
-                writer.write(vehicle.toCSV() + "\n");
+                writer.write(vehicle.toCSV());
+                writer.newLine();
+                writer.flush();
             }
-            writer.close();
         }
-        catch (IOException e)
+        catch (IOException ex)
         {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Błąd podczas zapisu do pliku: " + path, ex);
         }
     }
 
     @Override
     public void addVehicle(Vehicle vehicle)
     {
+        vehicle.setID(NEXT_ID++);
         vehicles.add(vehicle);
+        saveRepositoryToCSV();
     }
 
     @Override
-    public void removeVehicle(int ID)
-    {
+    public void removeVehicle(int ID) {
         vehicles.removeIf(vehicle -> vehicle.getID() == ID);
+        saveRepositoryToCSV();
     }
-
 }

@@ -9,16 +9,11 @@ public class User
     private String role;
     private int rentedVehicleID;
 
-    public User(String login, String password)
+    public User(String login, String password, String role, int rentedVehicleID, boolean passwordHashed)
     {
         this.login = login;
-        this.passwordHash = DigestUtils.sha256Hex(password);
-    }
-
-    public User(String login, String password, String role, int rentedVehicleID)
-    {
-        this.login = login;
-        this.passwordHash = DigestUtils.sha256Hex(password);
+        if(!passwordHashed) this.passwordHash = DigestUtils.sha256Hex(password);
+        else this.passwordHash = password;
         this.role = role;
         this.rentedVehicleID = rentedVehicleID;
     }
