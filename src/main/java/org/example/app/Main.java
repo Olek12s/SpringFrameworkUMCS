@@ -30,8 +30,8 @@ public class Main
 
         UserRepository userRepository = new UserRepository(userPath);
         Authentication auth = new Authentication(userRepository);
-        User user = new User("abc", "def", "user", -1, true);
-        User admin = new User("Admin000", "admin", "admin", -1, false);
+        User user = new User("abc", "def", "user", -1);
+        User admin = new User("Admin000", "admin", "admin", -1);
         userRepository.save(user, userPath);
         userRepository.save(admin, userPath);
         userRepository.removeVehicle(user, vehicleRepository, 1);
