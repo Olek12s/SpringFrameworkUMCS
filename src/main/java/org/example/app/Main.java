@@ -41,5 +41,6 @@ public class Main
         //userRepository.printAllUsers(admin);
         userRepository.printAllUsers(user);
         auth.login();
+        System.out.println("test3");
     }
 }
