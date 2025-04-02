@@ -1,46 +1,54 @@
 package org.example.app;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.example.model.Car;
-import org.example.model.Vehicle;
-import org.example.repositories.user.User;
-import org.example.repositories.user.UserRepository;
-import org.example.repositories.vehicle.VehicleRepository;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main
 {
     public static void main(String[] args)
     {
 
+        UserJsonRepository userRepository = new UserJsonRepository();
+        VehicleJsonRepository vehicleRepository = new VehicleJsonRepository();
+        RentalJsonRepository rentalRepository = new RentalJsonRepository();
 
-        String vehiclePath = "RepozytoriumPojazdow.csv";
-        String userPath = "RepozytoriumUzytkownikow.csv";
-        VehicleRepository vehicleRepository = new VehicleRepository(vehiclePath);
-        Vehicle car = new Car("brand-0", "model-x", 2025, 9999);
-        vehicleRepository.addVehicle(car);
 
-        ArrayList<Vehicle> vehicles = vehicleRepository.getVehicles();
+       // AuthService authService = new AuthService(userRepository);
+       // VehicleService vehicleService = new VehicleService(vehicleRepository, rentalRepository);
+       // RentalService rentalService = new RentalService(rentalRepository, vehicleRepository);
 
-        for (Vehicle v : vehicles)
-        {
-            System.out.println(v.toString());
-        }
+       // User admin = authService.register("admin", "admin123");     // ok o ile nie było go w bazie
+       // User user = authService.register("john", "john123");        // ok o ile nie było go w bazie
+       // User loggedUser = authService.login("john", "john123");     // ok o ile był w bazie
+       // User loggedAdmin = authService.login("admin", "admin123");  // ok o ile był w bazie
 
-        UserRepository userRepository = new UserRepository(userPath);
-        Authentication auth = new Authentication(userRepository);
-        User user = new User("abc", "def", "user", -1, false);
-        User admin = new User("Admin000", "admin", "admin", -1);
-        userRepository.save(user, userPath);
-        userRepository.save(admin, userPath);
-        userRepository.removeVehicle(user, vehicleRepository, 1);
-        userRepository.removeVehicle(admin, vehicleRepository, 12);
-        //userRepository.printUserDetails(admin);
-        //userRepository.printUserDetails(user);
-        //userRepository.printAllUsers(admin);
-        userRepository.printAllUsers(user);
-        auth.login();
-        System.out.println("test3");
+       // vehicleService.addVehicle(new Vehicle("Audi A4"), admin);   // ok, jeśli takiego auta nie ma
+       // vehicleService.addVehicle(new Vehicle("Audi A4"), user);   // user nie może dodawać
+       // rentalService.rentVehicle(1, loggedUser);
+       // rentalService.rentVehicle(1, loggedUser);   // Błąd - to auto już jest wypożyczone i użytkownik już wypożyczył
+
+
+
+
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put(null, null);
+        Vehicle vehicle = Vehicle.builder()
+                .brand("Volvo")
+                .model("V50")
+                .year(2000)
+                .plate("LU000")
+                .category("Car")
+                .attributes(attributes)
+                .build();
+
+
+        JsonFileStorage<Vehicle> jsf = new JsonFileStorage<>(
+                "test.json",
+                new TypeToken<List<Vehicle>>() {}.getType()
+        );
+
     }
 }

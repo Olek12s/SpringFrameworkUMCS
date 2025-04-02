@@ -1,8 +1,8 @@
-package org.example.repositories.user;
+package org.example.repositories2.user;
 
-import org.example.app.Authentication;
-import org.example.model.Vehicle;
-import org.example.repositories.vehicle.VehicleRepository;
+import org.example.app2.Authentication;
+import org.example.model2.Vehicle;
+import org.example.repositories2.vehicle.VehicleRepository;
 
 import java.io.*;
 import java.util.ArrayList;

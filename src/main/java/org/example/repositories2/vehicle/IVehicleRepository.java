@@ -1,6 +1,6 @@
-package org.example.repositories.vehicle;
+package org.example.repositories2.vehicle;
 
-import org.example.model.Vehicle;
+import org.example.model2.Vehicle;
 
 import java.util.ArrayList;
 

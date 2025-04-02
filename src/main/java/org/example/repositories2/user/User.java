@@ -1,4 +1,4 @@
-package org.example.repositories.user;
+package org.example.repositories2.user;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

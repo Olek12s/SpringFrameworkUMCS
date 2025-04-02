@@ -1,7 +1,7 @@
-package org.example.app;
+package org.example.app2;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.example.repositories.user.UserRepository;
+import org.example.repositories2.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

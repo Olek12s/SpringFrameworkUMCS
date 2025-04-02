@@ -17,7 +17,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>org.example.app.Main</mainClass>
+                  <mainClass>org.example.app2.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
