@@ -17,6 +17,10 @@ public class User
         this.role = role;
         this.rentedVehicleID = rentedVehicleID;
     }
+    public User(String login, String password, String role, int rentedVehicleID)
+    {
+        this(login, password, role, rentedVehicleID, false);
+    }
 
     public String getLogin() {return login;}
     public String getPasswordHash() {return passwordHash;}
